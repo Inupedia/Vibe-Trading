@@ -1,0 +1,22 @@
+# China network overlay — use with:
+#   docker compose -f docker-compose.yml -f docker-compose.cn.yml up -d --build
+#
+# Pulls base images via DaoCloud mirror and routes npm/pip/apt through CN mirrors.
+
+services:
+  vibe-trading:
+    build:
+      context: .
+      args:
+        NODE_IMAGE: docker.m.daocloud.io/library/node:20-slim
+        PYTHON_IMAGE: docker.m.daocloud.io/library/python:3.11-slim
+        NPM_REGISTRY: https://registry.npmmirror.com
+        PIP_INDEX_URL: https://pypi.tuna.tsinghua.edu.cn/simple
+        USE_CN_APT_MIRROR: 1
+
+  frontend:
+    image: docker.m.daocloud.io/library/node:20
+    command: >-
+      sh -c "npm config set registry https://registry.npmmirror.com
+      && npm install
+      && npm run dev -- --host --port 5899"
