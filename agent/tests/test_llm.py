@@ -24,7 +24,7 @@ class TestSyncProviderEnv:
         import src.providers.llm as llm_mod
         llm_mod._dotenv_loaded = True  # pretend already loaded
 
-        clean = {k: v for k, v in os.environ.items() if not k.startswith(("OPENAI_", "LANGCHAIN_", "DEEPSEEK_", "GROQ_", "OLLAMA_", "DASHSCOPE_", "ZAI_"))}
+        clean = {k: v for k, v in os.environ.items() if not k.startswith(("OPENAI_", "LANGCHAIN_", "DEEPSEEK_", "SILICONFLOW_", "GROQ_", "OLLAMA_", "DASHSCOPE_", "ZAI_"))}
         clean.update(env)
         with patch.dict(os.environ, clean, clear=True):
             _sync_provider_env()
@@ -65,6 +65,15 @@ class TestSyncProviderEnv:
         })
         assert result["OPENAI_API_KEY"] == "gsk-test"
         assert "groq" in result["OPENAI_API_BASE"]
+
+    def test_siliconflow_provider(self) -> None:
+        result = self._run_sync({
+            "LANGCHAIN_PROVIDER": "siliconflow",
+            "SILICONFLOW_API_KEY": "sf-key-123",
+            "SILICONFLOW_BASE_URL": "https://api.siliconflow.cn/v1",
+        })
+        assert result["OPENAI_API_KEY"] == "sf-key-123"
+        assert result["OPENAI_API_BASE"] == "https://api.siliconflow.cn/v1"
 
     def test_ollama_no_key_required(self) -> None:
         result = self._run_sync({

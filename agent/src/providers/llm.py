@@ -222,6 +222,7 @@ def _sync_provider_env() -> None:
         "openai":     ("OPENAI_API_KEY",     "OPENAI_BASE_URL"),
         "openrouter": ("OPENROUTER_API_KEY",  "OPENROUTER_BASE_URL"),
         "deepseek":   ("DEEPSEEK_API_KEY",    "DEEPSEEK_BASE_URL"),
+        "siliconflow": ("SILICONFLOW_API_KEY", "SILICONFLOW_BASE_URL"),
         "gemini":     ("GEMINI_API_KEY",      "GEMINI_BASE_URL"),
         "groq":       ("GROQ_API_KEY",        "GROQ_BASE_URL"),
         "dashscope":  ("DASHSCOPE_API_KEY",   "DASHSCOPE_BASE_URL"),

@@ -13,6 +13,7 @@ EXPECTED_PROVIDER_DEFAULTS = {
     "openrouter": "deepseek/deepseek-v4-pro",
     "openai": "gpt-5.5-instant",
     "deepseek": "deepseek-v4-pro",
+    "siliconflow": "deepseek-ai/DeepSeek-V3",
     "gemini": "gemini-3.5-flash",
     "groq": "meta-llama/llama-4-maverick-17b-128e-instruct",
     "dashscope": "qwen-plus-latest",
